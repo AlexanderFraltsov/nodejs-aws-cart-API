@@ -14,4 +14,4 @@ USER node
 ENV port=8080
 EXPOSE 8080
 
-ENTRYPOINT ["node", "dist/main.js"]
+CMD ["node", "dist/main.js"]
