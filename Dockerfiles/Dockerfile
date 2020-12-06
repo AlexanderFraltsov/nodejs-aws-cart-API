@@ -1,4 +1,6 @@
-FROM node:12-alpine
+# Base
+FROM node:12-alpine as base
+
 WORKDIR /app
 
 # Dependencies
@@ -6,12 +8,20 @@ COPY package*.json ./
 RUN npm install
 
 # Build
+WORKDIR /app
 COPY . .
 RUN npm run build
 
 # App
+FROM node:12-alpine AS application
+
+COPY --from=base /app/package.json ./
+RUN npm install --only=production
+RUN npm install pm2 -g
+COPY --from=base /app/dist ./dist
+
 USER node
 ENV port=8080
 EXPOSE 8080
 
-CMD ["node", "dist/main.js"]
+CMD ["pm2-runtime", "dist/main.js"]
