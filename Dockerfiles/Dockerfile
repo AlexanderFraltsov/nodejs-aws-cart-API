@@ -28,7 +28,7 @@ RUN /usr/local/bin/node-prune
 # App
 FROM node:12-alpine AS application
 
-COPY --from=base /app/package.json ./
+COPY --from=base /app/node_modules ./node_modules
 COPY --from=base /app/dist ./dist
 
 USER node
