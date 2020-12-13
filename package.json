@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "docker:publish": "bash ./scripts/docker/build-and-publish.sh",
     "docker:deploy": "bash ./scripts/docker/deploy.sh",
+    "eb:init": "eb init cart-api:last -r eu-west-1",
     "eb:deploy": "eb deploy"
   },
   "dependencies": {

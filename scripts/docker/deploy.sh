@@ -1,11 +1,9 @@
 #! /bin/bash
 
-#ENV=development
 ENV=develop
 
 REGION=eu-west-1
 AWS_ACCOUNT_ID=595420848170
-#PROFILE=default
 PROFILE=default
 
 AWS_DOCKER_REGISTRY_URL=$AWS_ACCOUNT_ID.dkr.ecr.$REGION.amazonaws.com
@@ -16,4 +14,3 @@ aws ecr get-login-password --profile $PROFILE --region $REGION | docker login --
 
 # Deploy app
 eb deploy $ENV
-# npm run deploy -- $ENV
